@@ -27,21 +27,44 @@
 		//state & behavior
 		function SalaryCalculatorModel(){
 			//state
-			this.basic = 0;
-			this.hra = 0;
-			this.da = 0;
-			this.tax = 0;
-			this.salary = 0;
+			var _data = {
+				basic : 0,
+				hra : 0,
+				da : 0,
+				tax : 0,
+				salary : 0
+			};
 
-			this.onSalaryChange = null;
+			var _changeListeners = {
+				basic : null,
+				hra : null,
+				da : null,
+				tax : null,
+				salary : null
+			};
+
+			this.get = function(attrName){
+				return _data[attrName];
+			};
+
+			this.set = function(attrName, value){
+				if (_data[attrName] === value) return;
+				_data[attrName] = value;
+
+				var listenerFn = _changeListeners[attrName];
+				if (typeof listenerFn === 'function')
+					listenerFn();
+			};
+
+			this.onChange = function(attrName, listenerFn){
+				_changeListeners[attrName] = listenerFn;
+			};
 		}
 		//behavior
 		SalaryCalculatorModel.prototype.calculate = function() {
-			var gross = this.basic + this.hra + this.da;
-			var net = gross * ((100-this.tax)/100);
-			this.salary = net;
-			if (typeof this.onSalaryChange === 'function')
-				this.onSalaryChange();
+			var gross = this.get('basic' )+ this.get('hra' )+ this.get('da');
+			var net = gross * ((100-this.get('tax'))/100);
+			this.set('salary', net);
 		};
 
 
@@ -52,36 +75,45 @@
 
 			//Reacting to user actions
 			$('#txtBasic').change(function(){
-				model.basic = $(this).val().toInt();
+				model.set('basic', $(this).val().toInt());
 			});
 
 			$('#txtHra').change(function(){
-				model.hra = $(this).val().toInt();
+				model.set('hra', $(this).val().toInt());
 			});
 
 			$('#txtDa').change(function(){
-				model.da = $(this).val().toInt();
+				model.set('da', $(this).val().toInt());
 			});
 
 			$('#rangeTax').change(function(){
-				model.tax = $(this).val().toInt();
+				model.set('tax', $(this).val().toInt());
 			});
 
-			
 			$('#btnCalculate').click(function(){
-
 				model.calculate();
-
-				$('#tdBasic').html(model.basic);
-				$('#tdHra').html(model.hra);
-				$('#tdDa').html(model.da);
-				$('#tdTax').html(model.tax);
-				
 			});
 
-			model.onSalaryChange = function(){
-				$('#tdSalary').html(model.salary);
-			};
+			//Reacting to model changes
+			model.onChange('salary', function(){
+				$('#tdSalary').html(model.get('salary'));
+			});
+
+			model.onChange('basic', function(){
+				$('#tdBasic').html(model.get('basic'));
+			});
+
+			model.onChange('hra', function(){
+				$('#tdHra').html(model.get('hra'));
+			});
+
+			model.onChange('da', function(){
+				$('#tdDa').html(model.get('da'));
+			});
+
+			model.onChange('tax', function(){
+				$('#tdTax').html(model.get('tax'));
+			});
 		});
 	</script>
 </head>
