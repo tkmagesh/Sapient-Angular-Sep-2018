@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Salary Calculator</title>
+	<style>
+		.field{
+			margin-bottom: 10px;
+		}
+		label{
+			display: block;
+		}
+		body{
+			margin-left: 50px;
+		}
+		td{
+			padding: 10px;
+			font-size: 18pt;
+		}
+	</style>
+	<script src="jquery-3.3.1.js"></script>
+	<script>
+		String.prototype.toInt = function() {
+			return parseInt(this, 10);
+		};
+
+		//state & behavior
+		function SalaryCalculatorModel(){
+			//state
+			this.basic = 0;
+			this.hra = 0;
+			this.da = 0;
+			this.tax = 0;
+			this.salary = 0;
+		}
+		//behavior
+		SalaryCalculatorModel.prototype.calculate = function() {
+			var gross = this.basic + this.hra + this.da;
+			var net = gross * ((100-this.tax)/100);
+			this.salary = net;
+		};
+
+
+		//User Interaction
+		$(document).ready(function(){
+
+			var model = new SalaryCalculatorModel();
+			
+			$('#btnCalculate').click(function(){
+				model.basic = $('#txtBasic').val().toInt();
+				model.hra = $('#txtHra').val().toInt();
+				model.da = $('#txtDa').val().toInt();
+				model.tax = $('#rangeTax').val().toInt();
+
+				model.calculate()
+
+				$('#tdBasic').html(model.basic);
+				$('#tdHra').html(model.hra);
+				$('#tdDa').html(model.da);
+				$('#tdTax').html(model.tax);
+				$('#tdSalary').html(model.salary);
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Salary Calculator</h1>
+	<hr>
+	<section>
+		<div class="field">
+			<label for="">Basic :</label>
+			<input type="number" id="txtBasic">
+		</div>
+		<div class="field">
+			<label for="">HRA :</label>
+			<input type="number" id="txtHra">
+		</div>
+		<div class="field">
+			<label for="">DA :</label>
+			<input type="number" id="txtDa">
+		</div>
+		<div class="field">
+			<label for="">Tax :</label>
+			<input type="range" id="rangeTax" min="0" max="30" value="0">
+		</div>
+		<div class="field">
+			<input type="button" value="Calculate" id="btnCalculate">
+		</div>
+		<div class="field">
+			<table>
+				<tbody>
+					<tr>
+						<td id="tdBasic">[Basic]</td>
+						<td id="tdHra">[Hra]</td>
+						<td id="tdDa">[Da]</td>
+						<td id="tdTax">[Tax]</td>
+						<td id="tdSalary">[Salary]</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</body>
+</html>
