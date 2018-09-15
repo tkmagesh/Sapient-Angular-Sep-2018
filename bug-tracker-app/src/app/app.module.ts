@@ -12,6 +12,7 @@ import { BugStorageService } from './bugTracker/services/bugStorage.service';
 import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
 import { TrimTextPipe } from './bugTracker/pipes/trimText.pipe';
 import { SortPipe } from './bugTracker/pipes/sort.pipe';
+import { ElapsedPipe } from './bugTracker/pipes/elapsed.pipe';
 
 /*function bugOperationsServiceFactory(){
   let bugOperationsService = {
@@ -34,6 +35,7 @@ import { SortPipe } from './bugTracker/pipes/sort.pipe';
     , ClosedCountPipe
     , TrimTextPipe
     , SortPipe
+    , ElapsedPipe
   ],
   imports: [
     BrowserModule

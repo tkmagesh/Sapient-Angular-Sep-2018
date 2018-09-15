@@ -24,7 +24,7 @@
 				>
 					{{bug.name | trimText:40}}
 				</span>
-				<div class="datetime">[Created At]</div>
+				<div class="datetime">{{bug.createdAt | elapsed}}</div>
 			</li>
 			
 		</ol>
