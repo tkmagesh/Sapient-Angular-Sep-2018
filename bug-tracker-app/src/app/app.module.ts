@@ -7,6 +7,7 @@ import { BugStatsComponent } from './bugTracker/views/BugStats.component';
 
 import { IBugOperations } from './bugTracker/contracts/IBugOperations';
 import { BugOperationsService } from './bugTracker/services/bugOperations.service';
+import { BugStorageService } from './bugTracker/services/bugStorage.service';
 
 import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
 import { TrimTextPipe } from './bugTracker/pipes/trimText.pipe';
@@ -38,7 +39,8 @@ import { SortPipe } from './bugTracker/pipes/sort.pipe';
     BrowserModule
   ],
   providers: [
-     { provide : BugOperationsService, useClass : BugOperationsService }
+     { provide : BugOperationsService, useClass : BugOperationsService },
+     BugStorageService
   ],
   bootstrap: [AppComponent]
 })

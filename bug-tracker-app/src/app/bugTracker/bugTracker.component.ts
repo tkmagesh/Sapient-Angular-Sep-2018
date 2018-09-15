@@ -32,6 +32,8 @@ export class BugTrackerComponent{
 		this.list.push(this.bugOperations.createNew('Data integrity checks failed'));
 		this.list.push(this.bugOperations.createNew('Application not responding'));
 		this.list.push(this.bugOperations.createNew('User actions not recognized'));*/
+
+		this.list = this.bugOperations.getAll();
 	}
 
 	onCreateNewClick(){
@@ -45,6 +47,11 @@ export class BugTrackerComponent{
 	}
 
 	onRemoveClosedClick(){
+		this
+			.list
+			.filter(bug => bug.isClosed)
+			.forEach(closedBug => this.bugOperations.remove(closedBug));
+			
 		this.list = this.list.filter(bug => !bug.isClosed);
 	}
 
