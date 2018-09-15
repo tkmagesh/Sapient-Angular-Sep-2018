@@ -8,6 +8,8 @@ import { BugStatsComponent } from './bugTracker/views/BugStats.component';
 import { IBugOperations } from './bugTracker/contracts/IBugOperations';
 import { BugOperationsService } from './bugTracker/services/bugOperations.service';
 
+import { TrimTextPipe } from './bugTracker/pipes/trimText.pipe';
+
 /*function bugOperationsServiceFactory(){
   let bugOperationsService = {
     createNew(){
@@ -26,6 +28,7 @@ import { BugOperationsService } from './bugTracker/services/bugOperations.servic
     AppComponent
     , BugTrackerComponent
     , BugStatsComponent
+    , TrimTextPipe
   ],
   imports: [
     BrowserModule
