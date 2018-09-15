@@ -13,6 +13,10 @@ export class BugTrackerComponent{
 
 	list : Bug[] = [];
 
+	sortAttrName : string = 'name';
+
+	sortDesc : boolean = false;
+	
 	/*
 	bugOperations : BugOperationsService = null;
 
@@ -22,7 +26,10 @@ export class BugTrackerComponent{
 	*/
 
 	constructor(private bugOperations : BugOperationsService){
-		
+		this.list.push(this.bugOperations.createNew('Server communication failure'));
+		this.list.push(this.bugOperations.createNew('Data integrity checks failed'));
+		this.list.push(this.bugOperations.createNew('Application not responding'));
+		this.list.push(this.bugOperations.createNew('User actions not recognized'));
 	}
 
 	onCreateNewClick(newBugName : string){

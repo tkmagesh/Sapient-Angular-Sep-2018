@@ -2,12 +2,12 @@
 	<app-bug-stats [bugs]="list"></app-bug-stats>
 	<section class="sort">
 		<label for="">Order By :</label>
-		<select name="" id="">
-			<option value=""></option>
-			<option value=""></option>
+		<select (change)="sortAttrName = $event.target.value">
+			<option value="name" selected>Name</option>
+			<option value="isClosed">Status</option>
 		</select>
 		<label for="">Descending ? :</label>
-		<input type="checkbox" name="" id="">
+		<input type="checkbox" (change)="sortDesc = $event.target.checked">
 	</section>
 	<section class="edit">
 		<label for="">Bug Name :</label>
@@ -16,7 +16,7 @@
 	</section>
 	<section class="list">
 		<ol>
-			<li *ngFor="let bug of list">
+			<li *ngFor="let bug of (list | sort:sortAttrName:sortDesc)">
 				<span class="bugname" 
 					(click)="onBugNameClick(bug)"
 					[ngClass]="{closed : bug.isClosed}"
