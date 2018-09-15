@@ -39,8 +39,9 @@ export class BugTrackerComponent{
 		this.list = [...this.list, newBug];
 	}
 
-	onBugNameClick(bug : Bug){
-		this.bugOperations.toggle(bug);
+	onBugNameClick(bugToToggle : Bug){
+		let toggledBug = this.bugOperations.toggle(bugToToggle);
+		this.list = this.list.map(bug => bug === bugToToggle ? toggledBug : bug);
 	}
 
 	onRemoveClosedClick(){

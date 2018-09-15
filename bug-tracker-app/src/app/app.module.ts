@@ -8,6 +8,7 @@ import { BugStatsComponent } from './bugTracker/views/BugStats.component';
 import { IBugOperations } from './bugTracker/contracts/IBugOperations';
 import { BugOperationsService } from './bugTracker/services/bugOperations.service';
 
+import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
 import { TrimTextPipe } from './bugTracker/pipes/trimText.pipe';
 import { SortPipe } from './bugTracker/pipes/sort.pipe';
 
@@ -29,6 +30,7 @@ import { SortPipe } from './bugTracker/pipes/sort.pipe';
     AppComponent
     , BugTrackerComponent
     , BugStatsComponent
+    , ClosedCountPipe
     , TrimTextPipe
     , SortPipe
   ],
