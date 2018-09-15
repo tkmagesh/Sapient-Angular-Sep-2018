@@ -9,9 +9,7 @@ interface IComparer{
 	pure : true
 })
 export class SortPipe implements PipeTransform{
-	constructor(){
-		console.log('sort pipe instance created');
-	}
+	
 	private getDescComparerFor(comparer : IComparer) : IComparer{
 		return function(item1 : any, item2 : any) : number {
 			return comparer(item1, item2) * -1;;
@@ -25,7 +23,6 @@ export class SortPipe implements PipeTransform{
 		}
 	}
 	transform(list : any[], attrName : string, isDesc : boolean = false) : any[] {
-		console.log('list transformed by sort pipe');
 		if (!list || !list.length || !attrName) return list;
 		let comparer = this.getComparerFor(attrName);
 		if (isDesc)
