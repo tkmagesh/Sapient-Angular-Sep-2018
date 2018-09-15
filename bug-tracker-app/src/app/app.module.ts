@@ -5,7 +5,21 @@ import { AppComponent } from './app.component';
 import { BugTrackerComponent } from './bugTracker/bugTracker.component';
 import { BugStatsComponent } from './bugTracker/views/BugStats.component';
 
+import { IBugOperations } from './bugTracker/contracts/IBugOperations';
 import { BugOperationsService } from './bugTracker/services/bugOperations.service';
+
+/*function bugOperationsServiceFactory(){
+  let bugOperationsService = {
+    createNew(){
+      return { name : 'Dummy', isClosed : false}
+    },
+    toggle(){
+
+    }
+  }
+  return bugOperationsService;
+ }*/
+
 
 @NgModule({
   declarations: [
@@ -17,7 +31,7 @@ import { BugOperationsService } from './bugTracker/services/bugOperations.servic
     BrowserModule
   ],
   providers: [
-    BugOperationsService
+     { provide : BugOperationsService, useClass : BugOperationsService }
   ],
   bootstrap: [AppComponent]
 })

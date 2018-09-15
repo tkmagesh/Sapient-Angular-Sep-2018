@@ -1,6 +1,7 @@
 import { Bug } from '../models/Bug';
+import { IBugOperations } from '../contracts/IBugOperations';
 
-export class BugOperationsService{
+export class BugOperationsService implements IBugOperations {
 	
 	createNew(newBugName : string ) : Bug {
 		let newBug : Bug = {

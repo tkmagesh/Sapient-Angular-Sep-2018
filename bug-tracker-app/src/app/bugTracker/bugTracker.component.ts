@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.service';
+import { IBugOperations } from './contracts/IBugOperations';
 
 @Component({
 	selector : 'app-bug-tracker',
@@ -9,12 +10,19 @@ import { BugOperationsService } from './services/bugOperations.service';
 	encapsulation : ViewEncapsulation.None
 })
 export class BugTrackerComponent{
+
 	list : Bug[] = [];
 
+	/*
 	bugOperations : BugOperationsService = null;
 
 	constructor(_bugOperations : BugOperationsService){
 		this.bugOperations = _bugOperations;
+	}
+	*/
+
+	constructor(private bugOperations : BugOperationsService){
+		
 	}
 
 	onCreateNewClick(newBugName : string){
