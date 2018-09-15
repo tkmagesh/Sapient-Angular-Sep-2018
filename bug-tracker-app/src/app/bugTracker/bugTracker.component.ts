@@ -16,7 +16,9 @@ export class BugTrackerComponent{
 	sortAttrName : string = 'name';
 
 	sortDesc : boolean = false;
-	
+
+	newBugName : string = '';
+
 	/*
 	bugOperations : BugOperationsService = null;
 
@@ -32,9 +34,9 @@ export class BugTrackerComponent{
 		this.list.push(this.bugOperations.createNew('User actions not recognized'));
 	}
 
-	onCreateNewClick(newBugName : string){
-		let newBug = this.bugOperations.createNew(newBugName);
-		this.list.push(newBug);
+	onCreateNewClick(){
+		let newBug = this.bugOperations.createNew(this.newBugName);
+		this.list = [...this.list, newBug];
 	}
 
 	onBugNameClick(bug : Bug){

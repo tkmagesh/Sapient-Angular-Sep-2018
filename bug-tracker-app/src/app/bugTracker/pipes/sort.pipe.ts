@@ -5,7 +5,8 @@ interface IComparer{
 }
 
 @Pipe({
-	name : 'sort'
+	name : 'sort',
+	pure : true
 })
 export class SortPipe implements PipeTransform{
 	constructor(){
@@ -24,6 +25,7 @@ export class SortPipe implements PipeTransform{
 		}
 	}
 	transform(list : any[], attrName : string, isDesc : boolean = false) : any[] {
+		console.log('list transformed by sort pipe');
 		if (!list || !list.length || !attrName) return list;
 		let comparer = this.getComparerFor(attrName);
 		if (isDesc)
