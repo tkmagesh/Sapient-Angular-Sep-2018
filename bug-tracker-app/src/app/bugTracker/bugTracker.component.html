@@ -1,9 +1,5 @@
 <section>
-	<section class="stats">
-		<span class="closed">{{getClosedCount()}}</span>
-		<span> / </span>
-		<span>{{list.length}}</span>
-	</section>
+	<app-bug-stats [bugs]="list"></app-bug-stats>
 	<section class="sort">
 		<label for="">Order By :</label>
 		<select name="" id="">

@@ -3,16 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BugTrackerComponent } from './bugTracker/bugTracker.component';
+import { BugStatsComponent } from './bugTracker/views/BugStats.component';
+
+import { BugOperationsService } from './bugTracker/services/bugOperations.service';
 
 @NgModule({
   declarations: [
     AppComponent
     , BugTrackerComponent
+    , BugStatsComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    BugOperationsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
