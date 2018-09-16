@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService{
 	isLoggedIn(){
-		return false;
+		return true;
 	}
 }
 

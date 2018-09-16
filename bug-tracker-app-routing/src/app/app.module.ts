@@ -49,7 +49,8 @@ let routes : Routes = [
         bugs: BugsResolver
       }
      },
-    {path : 'bugs', component : BugTrackerComponent, canActivate : [LoggedInGuard]}
+    {path : 'bugs', component : BugTrackerComponent, 
+      canActivate : [LoggedInGuard]}
 ]
 
 @NgModule({
