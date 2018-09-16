@@ -3,8 +3,6 @@ import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.service';
 import { IBugOperations } from './contracts/IBugOperations';
 
-import axios from 'axios';
-
 @Component({
 	selector : 'app-bug-tracker',
 	templateUrl : 'bugTracker.component.html',
@@ -24,9 +22,7 @@ export class BugTrackerComponent implements OnInit{
 	}
 
 	ngOnInit(){
-		axios.get('http://localhost:3000/bugs')
-			.then(response => response.data)
-			.then(bugs => this.list = bugs);
+		this.list = this.bugOperations.getAll();
 	}
 
 	onNewBug(bug : Bug){

@@ -30,6 +30,12 @@
       "isClosed": false,
       "createdAt": "2018-08-29T10:46:28.029Z",
       "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur aliquam id pariatur ipsa expedita nesciunt doloribus facilis architecto quisquam totam veniam odio, minima, labore deleniti, neque nam quia amet eveniet."
+    },
+    {
+      "id": 8,
+      "name": "Bugs are not toggled",
+      "isClosed": false,
+      "createdAt": "2018-09-16T06:04:00.294Z"
     }
   ],
   "projects": [
