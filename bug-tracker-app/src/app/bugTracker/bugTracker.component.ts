@@ -24,8 +24,8 @@ export class BugTrackerComponent implements OnInit{
 	}
 
 	ngOnInit(){
-		axios.get('http://localhost:3000/bugs')
-			.then(response => response.data)
+		this.bugOperations
+			.getAll()
 			.then(bugs => this.list = bugs);
 	}
 
@@ -34,17 +34,21 @@ export class BugTrackerComponent implements OnInit{
 	}
 
 	onBugNameClick(bugToToggle : Bug){
-		let toggledBug = this.bugOperations.toggle(bugToToggle);
-		this.list = this.list.map(bug => bug === bugToToggle ? toggledBug : bug);
+		this.bugOperations
+			.toggle(bugToToggle)
+			.then(toggledBug => this.list = this.list.map(bug => bug === bugToToggle ? toggledBug : bug));
 	}
 
 	onRemoveClosedClick(){
 		this
 			.list
 			.filter(bug => bug.isClosed)
-			.forEach(closedBug => this.bugOperations.remove(closedBug));
+			.forEach(closedBug => 
+				this.bugOperations
+					.remove(closedBug)
+					.then(() => this.list = this.list.filter(bug => bug !== closedBug)));
 			
-		this.list = this.list.filter(bug => !bug.isClosed);
+		
 	}
 
 	

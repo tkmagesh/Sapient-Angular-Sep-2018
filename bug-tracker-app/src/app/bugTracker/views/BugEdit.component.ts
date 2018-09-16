@@ -27,18 +27,9 @@ export class BugEditComponent{
 	}
 
 	onCreateNewClick(){
-		//let newBug = this.bugOperations.createNew(this.newBugName);
-		//this.list = [...this.list, newBug];
-		let bugData = {
-			id : 0,
-			name : this.newBugName,
-			isClosed : false,
-			createdAt : new Date()
-		};
-
-		axios
-			.post('http://localhost:3000/bugs', bugData)
-			.then(response => response.data)
+		
+		this.bugOperations
+			.createNew(this.newBugName)
 			.then(newBug => this.bugCreated.emit(newBug));
 		
 	}
