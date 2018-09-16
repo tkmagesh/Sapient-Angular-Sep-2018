@@ -23,46 +23,36 @@ export class BugTrackerComponent implements OnInit{
 		
 	}
 
-	ngOnInit(){
+	async ngOnInit(){
 
-		//this.list = await this.bugOperations.getAll();
+		this.list = await this.bugOperations.getAll();
 
 		/*this.bugOperations
 			.getAll()
 			.then(bugs => this.list = bugs);*/
-
-		this.bugOperations
-			.getAll()
-			.subscribe(bugs => this.list = bugs);
 	}
 
 	onNewBug(bug : Bug){
 		this.list = [...this.list, bug];
 	}
 
-	onBugNameClick(bugToToggle : Bug){
-		/*let toggledBug = await this.bugOperations.toggle(bugToToggle);
-		this.list = this.list.map(bug => bug === bugToToggle ? toggledBug : bug);*/
+	async onBugNameClick(bugToToggle : Bug){
+		let toggledBug = await this.bugOperations.toggle(bugToToggle);
+		this.list = this.list.map(bug => bug === bugToToggle ? toggledBug : bug);
 
 		/*this.bugOperations
 			.toggle(bugToToggle)
 			.then(toggledBug => this.list = this.list.map(bug => bug === bugToToggle ? toggledBug : bug));*/
-
-		this.bugOperations
-			.toggle(bugToToggle)
-			.subscribe(toggledBug => this.list = this.list.map(bug => bug === bugToToggle ? toggledBug : bug));
-	}	
-
+	}
 
 	onRemoveClosedClick(){
 		this
 			.list
 			.filter(bug => bug.isClosed)
-			.forEach(closedBug => 
-				this.bugOperations
-					.remove(closedBug)
-					.subscribe(() => this.list = this.list.filter(bug => bug !== closedBug));
-			);
+			.forEach(async closedBug => {
+				await this.bugOperations.remove(closedBug);
+				this.list = this.list.filter(bug => bug !== closedBug);
+			});
 	}
 
 	

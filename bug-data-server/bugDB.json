@@ -7,12 +7,6 @@
       "createdAt": "2018-08-29T09:47:32.505Z"
     },
     {
-      "id": 8,
-      "name": "Bugs are not toggled",
-      "isClosed": false,
-      "createdAt": "2018-09-16T06:04:00.294Z"
-    },
-    {
       "id": 10,
       "name": "Server communication failure",
       "isClosed": false,
