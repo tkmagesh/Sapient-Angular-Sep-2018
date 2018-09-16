@@ -32,6 +32,20 @@ var app = (function(){
 		
 	}
 
-	return { addSyncClient, addAsyncClient };
+	function addAsyncPromise(x,y){
+		console.log(`	[@Service] processing ${x} and ${y}`);
+
+		var promise = new Promise(function(resolveFn, rejectFn){
+			setTimeout(function(){
+				var result = x + y;
+				console.log(`	[@Service] returning result`);
+				resolveFn(result);
+			}, 5000);
+		});
+
+		return promise;
+	}
+
+	return { addSyncClient, addAsyncClient, addAsyncPromise };
 
 })();
