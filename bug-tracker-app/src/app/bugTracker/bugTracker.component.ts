@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.service';
 import { IBugOperations } from './contracts/IBugOperations';
@@ -9,7 +9,7 @@ import { IBugOperations } from './contracts/IBugOperations';
 	styleUrls : ['bugTracker.component.css'],
 	encapsulation : ViewEncapsulation.None
 })
-export class BugTrackerComponent{
+export class BugTrackerComponent implements OnInit{
 
 	list : Bug[] = [];
 
@@ -17,22 +17,11 @@ export class BugTrackerComponent{
 
 	sortDesc : boolean = false;
 
-	
-
-	/*
-	bugOperations : BugOperationsService = null;
-
-	constructor(_bugOperations : BugOperationsService){
-		this.bugOperations = _bugOperations;
-	}
-	*/
-
 	constructor(private bugOperations : BugOperationsService){
-		/*this.list.push(this.bugOperations.createNew('Server communication failure'));
-		this.list.push(this.bugOperations.createNew('Data integrity checks failed'));
-		this.list.push(this.bugOperations.createNew('Application not responding'));
-		this.list.push(this.bugOperations.createNew('User actions not recognized'));*/
+		
+	}
 
+	ngOnInit(){
 		this.list = this.bugOperations.getAll();
 	}
 

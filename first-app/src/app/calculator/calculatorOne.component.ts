@@ -7,6 +7,9 @@ import { CalculatorModel } from './CalculatorModel';
 })
 export class CalculatorOneComponent{
 
-	model : CalculatorModel = new CalculatorModel();
+
+	constructor(private model : CalculatorModel){
+
+	}
 	
 }
