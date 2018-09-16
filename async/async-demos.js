@@ -49,3 +49,26 @@ var app = (function(){
 	return { addSyncClient, addAsyncClient, addAsyncPromise };
 
 })();
+
+//Observables
+
+let timer = rx.Observable.create(function(subscriber){
+	var counter = 0;
+	var id = setInterval(function(){
+		if (++counter <= 10) {
+			subscriber.next(new Date());
+        } else {
+			clearInterval(id);
+			subscriber.complete();
+        }
+    },1000);
+});
+
+var subscriber = timer.subscribe(
+	d => console.log(d),
+	null,
+	() => console.log('Thats all folks')
+);
+
+//to stop the subscription
+//subscriber.unsubscribe();
