@@ -17,14 +17,39 @@ import { BugStatsComponent } from './bugTracker/views/bugStats.component';
 import { BugEditComponent } from './bugTracker/views/bugEdit.component';
 import { BugDetailsComponent } from './bugTracker/views/bugDetails.component';
 
-import {RouterModule, Routes} from '@angular/router';
+import { LoginComponent } from './bugTracker/auth/Login.component';
+
+import {RouterModule, Routes, ActivatedRouteSnapshot, RouterStateSnapshot, Resolve} from '@angular/router';
+
+import { LoggedInGuard } from './bugTracker/auth/LoggedInGuard';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Bug } from './bugTracker/models/Bug';
 
 //Routing
+
+@Injectable({
+    providedIn: 'root'
+})
+export class BugsResolver implements Resolve<Bug> {
+  constructor(private bugService: BugServerService) { 
+  }
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Bug> | Promise<Bug> | Bug {
+    return this.bugService.get(route.paramMap.get('id')); 
+  }
+}
+
+
+
 let routes : Routes = [
     {path : '', redirectTo : '/bugs', pathMatch : 'full'},
+    {path : 'login', component : LoginComponent},
     {path : 'add', component : BugEditComponent},
-    {path : 'details/:id', component : BugDetailsComponent},
-    {path : 'bugs', component : BugTrackerComponent}
+    {path : 'details/:id', component : BugDetailsComponent, resolve: {
+        bugs: BugsResolver
+      }
+     },
+    {path : 'bugs', component : BugTrackerComponent, canActivate : [LoggedInGuard]}
 ]
 
 @NgModule({
@@ -35,6 +60,7 @@ let routes : Routes = [
     , BugStatsComponent
     , BugEditComponent
     , BugDetailsComponent
+    , LoginComponent
   ],
   imports: [
     BrowserModule,

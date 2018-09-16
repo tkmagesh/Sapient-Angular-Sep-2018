@@ -17,7 +17,13 @@ export class BugDetailsComponent implements OnInit{
 
 	bug : Bug;
 
-	ngOnInit(){
+	
+	constructor(private route: ActivatedRoute) { }
+	ngOnInit() {
+		this.bug = this.route.snapshot.data['bugs'];
+	} 
+
+	/*ngOnInit(){
 		console.dir(this.route.params);
 
 		this.route.params
@@ -26,6 +32,6 @@ export class BugDetailsComponent implements OnInit{
 	}
 	constructor(private route: ActivatedRoute, private bugServer : BugServerService){
 
-	}
+	}*/
 
 }
