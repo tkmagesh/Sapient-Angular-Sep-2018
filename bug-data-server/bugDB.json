@@ -9,7 +9,7 @@
     {
       "id": 10,
       "name": "Server communication failure",
-      "isClosed": false,
+      "isClosed": true,
       "createdAt": "2018-09-16T06:55:49.787Z"
     },
     {
@@ -17,6 +17,13 @@
       "name": "User actions not recognized",
       "isClosed": true,
       "createdAt": "2018-09-16T10:45:14.111Z",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur aliquam id pariatur ipsa expedita nesciunt doloribus facilis architecto quisquam totam veniam odio, minima, labore deleniti, neque nam quia amet eveniet."
+    },
+    {
+      "id": 12,
+      "name": "Socket server is not broadcasting",
+      "isClosed": false,
+      "createdAt": "2018-09-20T10:13:45.982Z",
       "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur aliquam id pariatur ipsa expedita nesciunt doloribus facilis architecto quisquam totam veniam odio, minima, labore deleniti, neque nam quia amet eveniet."
     }
   ],

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.services';
-import axios from 'axios';
-
-window['axios'] = axios;
 
 @Component({
 	selector : 'app-bug-tracker',
@@ -47,6 +44,8 @@ export class BugTrackerComponent implements OnInit{
 	sortAttr : string = 'name';
 	sortDesc : boolean = false;
 
+	message: string = '';
+
 	constructor(private bugOperations : BugOperationsService){
 		
 		
@@ -54,6 +53,7 @@ export class BugTrackerComponent implements OnInit{
 	}
 
 	ngOnInit(){
+
 		this.bugOperations
 			.getAll()
 			.subscribe(bugs => this.bugs = bugs);
